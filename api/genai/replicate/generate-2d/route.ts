@@ -48,6 +48,7 @@ export interface Generate2DResponseData {
 
 // ENV
 const replicateApiToken = process.env.REPLICATE_API_TOKEN;
+const ollamaBaseUrl = process.env.OLLAMA_BASE_URL ?? "http://localhost:11434";
 
 // Client Replicate (utilise REPLICATE_API_TOKEN)
 const replicate = new Replicate({
@@ -215,7 +216,7 @@ Constraints:
 - Do NOT include comments, backticks or extra text.
 `.trim();
 
-    const response = await fetch("http://localhost:11434/api/chat", {
+    const response = await fetch(`${ollamaBaseUrl}/api/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
